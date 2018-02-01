@@ -6,15 +6,14 @@
   </div>
   
   <div class="todo__list">
-    <h1>Todos</h1>
       <ul>
           <li *ngFor="let todo of todos; let i = index">
             <input type="checkbox" (click)="comleteTodo(todo.id, todo.isCompleted)" name={{i}}/>
-            {{i + 1}} {{todo.body}}
-            <button (click)="removeTodo(todo.id)">X</button>
+            <span class="todo__body">{{i + 1}} {{todo.body}}</span>
+            <button class="todo__remove" (click)="removeTodo(todo.id)">X</button>
           </li>
         </ul>
-        <div>
+        <div class="todo__items_left">
           <span>{{notComletedTodosNumber}} items left</span>
         </div>
   </div>

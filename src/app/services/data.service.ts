@@ -63,15 +63,35 @@ export class DataService {
   completeTodo(completedTodo: Todo, callback){
     this.todos.map((todo, index) => {
       if(completedTodo.id == todo.id){
-        todo.isCompleted = true;
+        todo.isCompleted = !todo.isCompleted;
       }
     });
-    console.log(this.todos)
-    
+    this.countCompleted((numComleted)=>{
+      callback(numComleted);
+    })
   }
 
   editTodo(todo: Todo) {
 
+  }
+
+  removeTodo(todo: Todo) {
+    
+  }
+
+
+  countCompleted(callback){
+    let todosCount = this.todos.length;
+    let todosIncomleteCount = 0;
+
+    this.todos.map( (todo, i) => {
+      if(i  < todosCount ){
+        if(!todo.isCompleted){
+          todosIncomleteCount++;
+        }        
+      }
+    })
+    callback(todosIncomleteCount);
   }
 
 }

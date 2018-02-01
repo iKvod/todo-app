@@ -14,22 +14,14 @@ export class TodosComponent implements OnInit {
   new_todo:string;
   notComletedTodosNumber: number;
 
-  // todos:string[];
-
-  
-  constructor(private dataService:DataService ) {
-    //this.todos = dataService.getTodos();
-  }
+  constructor(private dataService:DataService ) {}
 
   
   ngOnInit() {
-    this.name = 'JohnDoe';
-
     this.dataService.getTodos((todos)=>{
       this.todos = todos;
       this.notComletedTodosNumber = todos.length;
     });
-
   }
 
 
@@ -57,22 +49,22 @@ export class TodosComponent implements OnInit {
   comleteTodo(todoId, isCompleted): void {
     for(let i = 0; i < this.todos.length; i++) {
       if(this.todos[i]['id'] == todoId){
-        //this.todos[i].isCompleted = !isCompleted;
-        this.dataService.completeTodo(this.todos[i], () =>{
-          
-          this.notComletedTodosNumber--;
-        
+        this.dataService.completeTodo(this.todos[i], (completeTodo) =>{
+          if(completeTodo >= 0){
+            this.notComletedTodosNumber = completeTodo;
+          }
         });
       }
     }
   }
 
-  removeTodo(todoId): void {
+  removeTodo(todoId, callback): void {
     for(let i = 0; i < this.todos.length; i++) {
       if(this.todos[i]['id'] == todoId){
         this.todos.splice(i, 1);
       }
     }
+    callback(this.todos.length);
   }
 
   
