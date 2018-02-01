@@ -1,0 +1,17 @@
+.todo__wrapper {
+    width: 500px;
+    margin: 10% auto;
+}
+.todo__main{
+
+}
+
+
+.todo__list ul {
+    list-style: none;
+}
+
+input.todo__add {
+    padding: 15px 9px;
+    width: 90%;
+}

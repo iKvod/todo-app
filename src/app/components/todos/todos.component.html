@@ -1,0 +1,21 @@
+<div class="todo__wrapper">
+  <div class="todo__form">
+      <form (submit)="addTodo(todo.value)">
+          <input class="todo__add" type="text" placeholder="add todo" [(ngModel)] = "new_todo" name="todo" #todo>
+        </form>
+  </div>
+  
+  <div class="todo__list">
+    <h1>Todos</h1>
+      <ul>
+          <li *ngFor="let todo of todos; let i = index">
+            <input type="checkbox" (click)="comleteTodo(todo.id, todo.isCompleted)" name={{i}}/>
+            {{i + 1}} {{todo.body}}
+            <button (click)="removeTodo(todo.id)">X</button>
+          </li>
+        </ul>
+        <div>
+          <span>{{notComletedTodosNumber}} items left</span>
+        </div>
+  </div>
+</div>
